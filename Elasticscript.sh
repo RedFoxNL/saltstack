@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #Het updaten en upgraden van het systeem
 echo "127.0.0.1 testminion" | sudo tee /etc/hosts
 sudo apt update && upgrade -y
@@ -22,8 +23,8 @@ sudo sed -i '15s/.*/@10.8.0.28/' /etc/rsyslog.d/50-default.conf
 sudo service rsyslog restart
 
 #Formatting the Log Data to JSON
-sudo wget -O 01-json-template.conf https://github.com/RedFoxNL/saltstack/blob/master/01-json-template.conf
-sudo cp 01-json-template.conf /etc/rsyslog.d/01-json-template.conf
+sudo git clone https://github.com/RedFoxNL/saltstack.git
+sudo cp saltstack/01-json-template.conf /etc/rsyslog.d/01-json-template.conf
 
 #Het toevoegen van het IP adress van de Logstash server
 sudo sed -i '4s/.*/*.* @10.8.0.28:10514;json-template/' /etc/rsyslog.d/60-output.conf
@@ -35,8 +36,7 @@ sudo apt update
 sudo apt install logstash -y
 
 #Het ophalen van de logstash.conf
-sudo wget -O logstash.conf https://github.com/RedFoxNL/saltstack/blob/master/logstash.conf
-sudo cp logstash.conf /etc/logstash/conf.d/logstash.conf
+sudo cp saltstack/logstash.conf /etc/logstash/conf.d/logstash.conf
 sudo service logstash configtest
 sudo service logstash start
 sudo service rsyslog restart
