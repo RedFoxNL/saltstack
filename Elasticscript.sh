@@ -20,7 +20,7 @@ sudo sed -i '23s/.*/input(type="imtcp" port="514")/' /etc/rsyslog.conf
 sudo service rsyslog restart
 
 #Het toevoegen van het IP van de server waarmee hij moet connecten
-sudo sed -i '15s/.*/@10.8.0.28/' /etc/rsyslog.d/50-default.conf
+sudo sed -i '15s/.*/@10.8.0.28:514/' /etc/rsyslog.d/50-default.conf
 sudo service rsyslog restart
 
 #Formatting the Log Data to JSON
