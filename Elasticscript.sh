@@ -1,7 +1,8 @@
 #!/bin/bash
 
 #Het updaten en upgraden van het systeem
-echo "127.0.0.1 testminion" | sudo tee /etc/hosts
+HST="$(hostname)" 
+sed -i "/127.0.0.1/ a\127.0.0.1 $HST" /etc/hosts
 sudo apt update && upgrade -y
 
 #Het installeren van Elasticsearch
@@ -37,6 +38,8 @@ sudo apt install logstash -y
 
 #Het ophalen van de logstash.conf
 sudo cp saltstack/logstash.conf /etc/logstash/conf.d/logstash.conf
+IP="$(/sbin/ip -o -4 addr list ens3 | awk '{print $4}' | cut -d/ -f1)"
+sudo sed -i '26s/.*/hosts => [ "'$IP':9200" ]/' /etc/logstash/conf.d/logstash.conf
 sudo service logstash configtest
 sudo service logstash start
 sudo service rsyslog restart
