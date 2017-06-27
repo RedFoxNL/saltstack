@@ -43,5 +43,7 @@ sudo sed -i '26s/.*/hosts => [ "'$IP':9200" ]/' /etc/logstash/conf.d/logstash.co
 sudo service logstash configtest
 sudo service logstash start
 sudo service rsyslog restart
- 
+
+#Het starten van ElasticSearch
+sudo /usr/share/elasticsearch/bin/elasticsearch start
 
