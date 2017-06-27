@@ -27,9 +27,6 @@ sudo service rsyslog restart
 sudo git clone https://github.com/RedFoxNL/saltstack.git
 sudo cp saltstack/01-json-template.conf /etc/rsyslog.d/01-json-template.conf
 
-#Het toevoegen van het IP adress van de Logstash server
-sudo sed -i '4s/.*/*.* @'$IP':10514;json-template/' /etc/rsyslog.d/60-output.conf
-
 #Het installeren van logstash
 sudo wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 sudo echo "deb http://packages.elastic.co/logstash/2.3/debian stable main" | sudo tee -a /etc/apt/sources.list
