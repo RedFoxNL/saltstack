@@ -2,7 +2,7 @@
 
 #Het updaten en upgraden van het systeem
 HST="$(hostname)" 
-sed -i "/127.0.0.1/ a\127.0.0.1 $HST" /etc/hosts
+sudo sed -i "/127.0.0.1/ a\127.0.0.1 $HST" /etc/hosts
 sudo apt update && upgrade -y
 
 #Het installeren van Elasticsearch
@@ -28,7 +28,7 @@ sudo git clone https://github.com/RedFoxNL/saltstack.git
 sudo cp saltstack/01-json-template.conf /etc/rsyslog.d/01-json-template.conf
 
 #Het toevoegen van het IP adress van de Logstash server
-sudo sed -i '4s/.*/*.* @10.8.0.28:10514;json-template/' /etc/rsyslog.d/60-output.conf
+sudo sed -i '4s/.*/*.* @'$IP':10514;json-template/' /etc/rsyslog.d/60-output.conf
 
 #Het installeren van logstash
 sudo wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
