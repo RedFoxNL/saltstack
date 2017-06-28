@@ -42,5 +42,7 @@ sudo service logstash start
 sudo service rsyslog restart
 
 #Het starten van ElasticSearch
-sudo /usr/share/elasticsearch/bin/elasticsearch start
+sudo /usr/share/elasticsearch/bin/elasticsearch start &
+sudo rm -rf /home/ubuntu/saltstack
+
 
