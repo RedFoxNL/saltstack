@@ -13,7 +13,7 @@ cd /var
 sudo mkdir www
 cd www
 sudo mkdir html
-sudo docker run -e WORDPRESS_DB_PASSWORD=Cisco123 --name wordpress --link wordpressdb:mysql -p 10.8.0.38:80:80 -v "$PWD/html":/var/www/html d wordpress
+sudo docker run -e WORDPRESS_DB_PASSWORD=Cisco123 --name wordpress --link wordpressdb:mysql -p 10.8.0.38:80:80 -v "$PWD/html":/var/www/html -d wordpress
 sudo iptables -P FORWARD ACCEPT
 #installeren van DB
 
