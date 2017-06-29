@@ -51,8 +51,10 @@ sudo service rsyslog restart
 
 sudo rm -rf /home/ubuntu/saltstack
 echo netstat -na | grep 514
-echo "De installatie is Succesvol verlopen"
-echo "Ome Jos bedankt voor alles!!!"
-echo "Groetjes van de Amateur Zendpiraat"
-echo "P.S."
-echo "Wanneer is die barbeque ook alweer??"
+echo "---------------------------------------"
+echo "| De installatie is Succesvol verlopen|"
+echo "| Ome Jos bedankt voor alles!!!       |"
+echo "| Groetjes van de Amateur Zendpiraat  |"
+echo "| P.S.                                |"
+echo "| Wanneer is die barbeque ook alweer??|"
+echo "---------------------------------------"
