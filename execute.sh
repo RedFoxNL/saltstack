@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Het opvragen van IP adress en het zetten in de variabele IP
+IP="$(/sbin/ip -o -4 addr list ens3 | awk '{print $4}' | cut -d/ -f1)"
+
 #Het aanpassen van de hostname
 HST="$(hostname)" 
 sudo sed -i "/127.0.0.1/ a\127.0.0.1 $HST" /etc/hosts
@@ -31,7 +34,7 @@ cd www
 sudo mkdir html
 
 #Het uitvoeren van Docker met de Wordpress container in de achtergrond
-sudo docker run -e WORDPRESS_DB_PASSWORD=Cisco123 --name wordpress --link wordpressdb:mysql -p 10.8.0.38:80:80 -v "$PWD/html":/var/www/html -d wordpress
+sudo docker run -e WORDPRESS_DB_PASSWORD=Cisco123 --name wordpress --link wordpressdb:mysql -p $IP:80:80 -v "$PWD/html":/var/www/html -d wordpress
 
 #Het forwarden van het IP adres
 sudo iptables -P FORWARD ACCEPT
@@ -66,7 +69,6 @@ sudo apt install logstash -y
 
 #Het ophalen van de logstash.conf
 sudo cp saltstack/config/logstash.conf /etc/logstash/conf.d/logstash.conf
-IP="$(/sbin/ip -o -4 addr list ens3 | awk '{print $4}' | cut -d/ -f1)"
 sudo sed -i '26s/.*/hosts => [ "'$IP':9200" ]/' /etc/logstash/conf.d/logstash.conf
 sudo service logstash configtest
 sudo service logstash start
