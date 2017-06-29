@@ -9,5 +9,6 @@ sudo apt update && upgrade -y
 sudo apt-get install salt-minion -y
 
 sudo git clone https://github.com/RedFoxNL/saltstack.git 
+sudo chmod +x /home/ubuntu/saltstack/execute.sh
 sudo cp -f saltstack/config/minion /etc/salt
 sudo salt-minion -d
