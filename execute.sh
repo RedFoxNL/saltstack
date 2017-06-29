@@ -50,5 +50,5 @@ sudo sed -i '5s/.*/ *.*\		\@10.8.0.28:514/' /etc/rsyslog.d/50-default.conf
 sudo service rsyslog restart
 
 sudo rm -rf /home/ubuntu/saltstack
-
+echo netstat -na | grep 514
 
