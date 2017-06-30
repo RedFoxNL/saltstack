@@ -10,6 +10,8 @@ sudo sed -i "/127.0.0.1/ a\127.0.0.1 $HST" /etc/hosts
 #installeren van docker
 sudo apt update -y && apt upgrade -y
 
+#Het installeren van Nagios NRPE
+sudo apt-get -y install nagios-nrpe-server
 #Het installeren van Curl
 sudo apt install curl -y
 sudo curl -fsSL https://get.docker.com/ | sh
